@@ -17,7 +17,21 @@
 
 // * As a user, I want to see my total wins, ties, and losses after each round.
 
-var rpsOptions = ["R", "P", "S"];
+var wins = 0;
+var ties = 0;
+var losses = 0;
+
+//Array of options for the computer to pick from
+var rpsOptions = ["Enter R, P, or S"];
+
+var playGame = function() {
+//Ask user for their choice
+var userChoice = window.prompt("Please enter your choice of R, P or S");
+
+//If user pressed cancel, immediately and function
+// if (!userChoice) {
+//     return;
+// }
 
 function computerChoice() {
     Math.floor(Math.random() * ([rpsOptions].length));
@@ -26,23 +40,21 @@ console.log(computerChoice);
 
 
 
-var playRPS = confirm("Would you like to play Rock Paper or Scissors against the computer?")
-console.log(playRPS);
 
-function userEnterChoice() {
-    prompt("Please enter your choice of R, P or S")
+
+
+
 }
 
+//Ask if the user would like to play
+// var playRPS = confirm("Would you like to play Rock Paper or Scissors against the computer?")
+// console.log(playRPS);
 
-
-
-
-if (playRPS) {
-    userEnterChoice()
-} else {
-    alert("Sorry to hear that, maybe next time!")
-}
-
+// if (playRPS) {
+//     userEnterChoice()
+// } else {
+//     alert("Sorry to hear that, maybe next time!")
+// }
 
 
 
