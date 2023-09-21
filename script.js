@@ -1,42 +1,64 @@
-// Need and array of R,P,S
-// Need a a place to store the user inputs
-// Need a prompt to ask users to enter R, P or S
-// Need to generate a random selection from the computer
-// Need to have an If Else statement to determine the winner
-// Need to ask the user if they would like to play again
-// Need to store total wins and total losses
-
-
-// * As a user, I want to play Rock, Paper, Scissors against an automated opponent.
-
-// * As a user, I can enter R, P, or S to signify my choice of rock, paper, or scissors.
-
-// * As a user, I expect the computer to choose R, P, or S in return.
-
-// * As a user, I want the option to play again whether I win or lose.
-
-// * As a user, I want to see my total wins, ties, and losses after each round.
-
 var wins = 0;
 var ties = 0;
 var losses = 0;
 
 //Array of options for the computer to pick from
-var rpsOptions = ["Enter R, P, or S"];
+var rpsOptions = ["R", "P", "S"];
 
-var playGame = function() {
-//Ask user for their choice
-var userChoice = window.prompt("Please enter your choice of R, P or S");
+var playGame = function () {
+    //Ask user for their choice
+    var userChoice = window.prompt("Please enter your choice of R, P or S");
 
-//If user pressed cancel, immediately and function
-// if (!userChoice) {
-//     return;
-// }
+    //If user pressed cancel, immediately and function
+    if (!userChoice) {
+        return;
+    }
 
-function computerChoice() {
-    Math.floor(Math.random() * ([rpsOptions].length));
+    //Convert to uppercase to make comparisons easier
+    userChoice = userChoice.toUpperCase();
+
+    //Get random index from array of options
+    var index = Math.floor(Math.random() * rpsOptions.length);
+    var computerChoice = rpsOptions[index];
+
+    window.alert("The computer chose " + computerChoice);
+
+    //If choices are the same, it's a tie
+    if (userChoice === computerChoice) {
+        ties++;
+        window.alert("You have tied!");
+
+        //Check every win condition for the player   
+    } else if (
+        (userChoice === "R" && computerChoice === "S") ||
+        (userChoice === "P" && computerChoice === "R") ||
+        (userChoice === "S" && computerChoice === "P")
+    ) {
+        wins++;
+        window.alert("You win!");
+
+        // If above conditions failed, assume player lost
+    } else {
+        losses++;
+        window.alert("You lost!");
+    }
+
+    //Print stats with line breaks
+    window.alert(
+        "Status:\nWins: " + wins + "\nLosses: " + losses + "\nTies: " + ties
+    );
+
+    //Ask user to play again
+    var playAgain = window.confirm("Play again?");
+
+    //If user pressed OK, run the function again
+    if (playAgain) {
+        playGame();
+    }
 }
-console.log(computerChoice);
+
+//Run the game for the first time
+playGame();
 
 
 
@@ -44,7 +66,7 @@ console.log(computerChoice);
 
 
 
-}
+
 
 //Ask if the user would like to play
 // var playRPS = confirm("Would you like to play Rock Paper or Scissors against the computer?")
